@@ -13,8 +13,12 @@ class Weather
         $cityID = input('citycode');
         $date = input('date');
 
-//        $data = ["city"=>$city,"date"=>$date];
-        $data = WeatherDetail::where("city_id", $cityID)->where("date", $date)->findOrFail();
+        $data = WeatherDetail::where('city_id','>','9')
+            ->alias('d')
+            ->where(['city_id'=>$cityID,'date'=>$date])
+            ->field('*')
+            ->join('weather_city c','c.number = d.city_id')
+            ->select();
 
         return json($data);
 //        return json($data);
