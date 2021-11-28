@@ -7,6 +7,7 @@ Route::get('think', function () {
 Route::get('hello/:name', 'index/hello');
 
 Route::get('weather', 'weather/index');
+Route::get('getAllCityCode', 'weather/getAllCityCode');
 
 return [
 
